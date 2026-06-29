@@ -10,6 +10,10 @@ type User struct {
 	Age   int
 }
 
+func (u User) Describe() string {
+	return fmt.Sprintf("%s (%s) -- %d", u.Name, u.Email, u.Age)
+}
+
 func filterAge(user []User, age int) []User {
 	var output []User
 	for _, num := range user {
@@ -23,21 +27,28 @@ func filterAge(user []User, age int) []User {
 
 func main() {
 	user := []User{
-		{Name: "Mike", Age: 30},
-		{Name: "James", Age: 18},
-		{Name: "Coco", Age: 34},
-		{Name: "Bliss", Age: 90},
-		{Name: "Bag", Age: 60},
-		{Name: "Chris", Age: 35},
+		{Name: "Mike", Email: "@gmail.com", Age: 30},
+		{Name: "James", Email: "@gmail.com", Age: 18},
+		{Name: "Coco", Email: "@gmail.com", Age: 34},
+		{Name: "Bliss", Email: "@gmail.com", Age: 90},
+		{Name: "Bags", Email: "@gmail.com", Age: 60},
+		{Name: "Chris", Email: "@gmail.com", Age: 35},
 	}
 	fmt.Println("-----Original-----")
 
-	fmt.Println(user)
+	for _, each := range user {
+		fmt.Println(each.Describe())
+	}
 
-	fmt.Println()
+	fmt.Println("-----------")
 
-	fmt.Println(filterAge(user, 20))
+	data := filterAge(user, 20)
+	for _, each := range data {
+		fmt.Println(each.Describe())
+	}
 	fmt.Println("-------Filter------")
-	fmt.Println(user)
+	for _, each := range user {
+		fmt.Println(each.Describe())
+	}
 
 }
